@@ -84,19 +84,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Lấy danh sách học viên theo khóa học
-    public List<String> getStudentsByCourse(String courseName) {
-        List<String> studentList = new ArrayList<>();
+    public List<StudentCourseInfo> getStudentsByCourse(String courseName) {
+        List<StudentCourseInfo> studentList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT s.fullName FROM Student s " +
+        String query = "SELECT s.id, s.fullName, c.startDate, c.endDate " +
+                "FROM Student s " +
                 "JOIN Registration r ON s.id = r.studentId " +
                 "JOIN Course c ON c.id = r.courseId " +
                 "WHERE c.courseName = ?";
         Cursor cursor = db.rawQuery(query, new String[]{courseName});
         while (cursor.moveToNext()) {
-            studentList.add(cursor.getString(0));
+            int id = cursor.getInt(0);
+            String fullName = cursor.getString(1);
+            String startDate = cursor.getString(2);
+            String endDate = cursor.getString(3);
+            studentList.add(new StudentCourseInfo(id, fullName, startDate, endDate));
         }
         cursor.close();
         return studentList;
+    }
+
+    // Lớp để lưu thông tin học viên và khóa học
+    public static class StudentCourseInfo {
+        public int id;
+        public String fullName;
+        public String startDate;
+        public String endDate;
+
+        public StudentCourseInfo(int id, String fullName, String startDate, String endDate) {
+            this.id = id;
+            this.fullName = fullName;
+            this.startDate = startDate;
+            this.endDate = endDate;
+        }
     }
 
     // Thêm đăng ký khóa học

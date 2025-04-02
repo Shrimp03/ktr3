@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="@drawable/border">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ID"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="4dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="Họ và tên"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="4dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="Ngày bắt đầu"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="4dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="Ngày kết thúc"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="4dp"/>
+</LinearLayout>

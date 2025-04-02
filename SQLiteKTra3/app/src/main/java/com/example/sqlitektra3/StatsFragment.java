@@ -1,5 +1,6 @@
 package com.example.sqlitektra3;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +32,10 @@ public class StatsFragment extends Fragment {
         studentListView = view.findViewById(R.id.list_students);
         dbHelper = new DatabaseHelper(getContext());
 
+        // Thêm header cho ListView
+        View header = inflater.inflate(R.layout.student_list_header, null);
+        studentListView.addHeaderView(header, null, false);
+
         loadCourses();
 
         courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -56,8 +61,8 @@ public class StatsFragment extends Fragment {
 
     private void loadStudents() {
         String selectedCourse = courseSpinner.getSelectedItem().toString();
-        List<String> studentList = dbHelper.getStudentsByCourse(selectedCourse);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, studentList);
+        List<DatabaseHelper.StudentCourseInfo> studentList = dbHelper.getStudentsByCourse(selectedCourse);
+        StudentAdapter adapter = new StudentAdapter(getContext(), studentList);
         studentListView.setAdapter(adapter);
     }
 }
