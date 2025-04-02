@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_courses"
+        android:title="Khóa học"
+        android:icon="@android:drawable/ic_menu_search"/>
+    <item
+        android:id="@+id/nav_stats"
+        android:title="Thống kê"
+        android:icon="@android:drawable/ic_menu_info_details"/>
+</menu>
